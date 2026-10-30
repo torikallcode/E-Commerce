@@ -1,0 +1,151 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,jsx}'],
+  theme: {
+    extend: {
+      colors: {
+        ink: {
+          900: '#101828',
+          700: '#344054',
+          500: '#667085',
+          300: '#98a2b3',
+          100: '#f8fafc',
+          200: '#e2e8f0',
+        },
+        brand: {
+          50: '#eef4ff',
+          100: '#dbe7ff',
+          200: '#bed3ff',
+          300: '#91b4ff',
+          400: '#5d8bfc',
+          500: '#3867f4',
+          600: '#2449e8',
+          700: '#1c39d4',
+          800: '#1d32ab',
+          900: '#1d3087',
+        },
+        accent: {
+          50: '#fff8ed',
+          100: '#ffefd4',
+          200: '#ffdba8',
+          300: '#ffc070',
+          400: '#ff9a37',
+          500: '#ff7d11',
+          600: '#f05e07',
+          700: '#c74408',
+          800: '#9e350f',
+          900: '#7f2e10',
+        },
+        surface: '#f6f7fb',
+        // Semantic colors for states
+        success: '#10b981',
+        warning: '#f59e0b',
+        error: '#ef4444',
+        info: '#3b82f6',
+      },
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        // Type scale: 8pt base (13px ~ 0.8125rem), scaled by 1.25x
+        xs: ['0.75rem', { lineHeight: '1.5' }],
+        sm: ['0.875rem', { lineHeight: '1.25' }],
+        base: ['1rem', { lineHeight: '1.5' }],
+        lg: ['1.125rem', { lineHeight: '1.5' }],
+        xl: ['1.25rem', { lineHeight: '1.5' }],
+        '2xl': ['1.5rem', { lineHeight: '1.5' }],
+        '3xl': ['1.875rem', { lineHeight: '1.4' }],
+        '4xl': ['2.25rem', { lineHeight: '1.3' }],
+        '5xl': ['3rem', { lineHeight: '1.25' }],
+      },
+      lineHeight: {
+        none: '1',
+        tight: '1.25',
+        normal: '1.5',
+        relaxed: '1.625',
+        loose: '1.75',
+      },
+      letterSpacing: {
+        tighter: '-0.05em',
+        tight: '-0.025em',
+        normal: '0em',
+        wide: '0.05em',
+        wider: '0.1em',
+      },
+      spacing: {
+        // Consistent 4px base grid (1rem = 16px)
+        0.5: '2px',
+        1: '4px',
+        1.5: '6px',
+        2: '8px',
+        2.5: '10px',
+        3: '12px',
+        3.5: '14px',
+        4: '16px',
+        5: '20px',
+        6: '24px',
+        7: '28px',
+        8: '32px',
+        9: '36px',
+        10: '40px',
+        12: '48px',
+        16: '64px',
+        20: '80px',
+        24: '96px',
+      },
+      borderRadius: {
+        sm: '0.125rem',
+        md: '0.25rem',
+        lg: '0.5rem',
+        full: '9999px',
+        '4xl': '2rem',
+      },
+      boxShadow: {
+        // Coherent depth system (8px base offset)
+        xs: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 6px 0 rgba(0, 0, 0, 0.1)',
+        md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        soft: '0 18px 50px -24px rgba(16, 24, 40, 0.28)',
+        card: '0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 32px -20px rgba(16, 24, 40, 0.24)',
+        accent: '0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+        // Focus ring
+        focus: '0 0 0 2px rgba(56, 103, 244, 0.35)',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        0: '0px',
+        2: '2px',
+        4: '4px',
+        8: '8px',
+      },
+      keyframes: {
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' },
+        },
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-height)' },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up 0.35s ease-out both',
+        shimmer: 'shimmer 1.6s infinite',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+    },
+    plugins: [],
+  }
+}

@@ -1,0 +1,76 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ecommerce-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASS=test
+      - DB_NAME=ecommerce
+      - APP_ENV=development
+      - ADMIN_EMAIL=admin@example.com
+      - ADMIN_PASSWORD=admin12345
+      - CORS_ORIGINS=http://localhost:5173
+      - MIDTRANS_CLIENT_KEY=${MIDTRANS_CLIENT_KEY}
+      - MIDTRANS_SERVER_KEY=${MIDTRANS_SERVER_KEY}
+      - MIDTRANS_IS_PRODUCTION=${MIDTRANS_IS_PRODUCTION}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - ecommerce-net
+
+  mysql:
+    image: mysql:9.1
+    container_name: ecommerce-mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_DATABASE=ecommerce
+      - MYSQL_USER=ecommerce
+      - MYSQL_PASSWORD=test
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./backend/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ecommerce-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ecommerce-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8080/api/v1
+      - VITE_MIDTRANS_CLIENT_KEY=${MIDTRANS_CLIENT_KEY}
+      - VITE_MIDTRANS_IS_PRODUCTION=${MIDTRANS_IS_PRODUCTION}
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - ecommerce-net
+
+volumes:
+  mysql-data:
+
+networks:
+  ecommerce-net:
+    driver: bridge

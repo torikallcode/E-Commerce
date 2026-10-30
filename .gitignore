@@ -1,0 +1,35 @@
+# Environment / sensitive files (PRIVACY - do not commit)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Go
+*.exe
+*.test
+*.prof
+
+# Frontend (Node.js / Vite)
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Build artifacts
+build_err.txt
+*.log
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+.agents/
+skills-lock.json
